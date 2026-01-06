@@ -1,0 +1,6 @@
+#EMPLOYEE LIST
+#FORMAT: EMPLOYEE_ID, FIRST_NAME (SPACE) LAST_NAME
+E001, Chris Cornel
+E002, Eddie Vedder
+E003, Kurt Cobain
+E004, Lane Staley
