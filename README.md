@@ -114,10 +114,6 @@ asset-management-system/
 - **ASSIGNED**: Currently assigned to an employee
 - **REPAIR**: Under maintenance/repair
 
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
-
 ## Author
 
 Arthur O'Dea
