@@ -468,7 +468,7 @@ public class AssetManagementSystem {
 							//clear scanner
 							scn.nextLine();
 							//prompt user for common fields
-							System.out.println("Enter ASSET ID, MAKE , MODEL, STATUS, ASSIGNMENT, CARRIER, OS separated by commas: ");
+							System.out.println("Enter ASSET ID, MAKE , MODEL, STATUS, ASSIGNMENT, LICENSE KEY, EXPIRY DATE separated by commas: ");
 							String line4 = scn.nextLine();
 
 							//split line into an array
