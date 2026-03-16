@@ -392,7 +392,7 @@ public class AssetManagementSystem {
 							//validate numeric inputs
 							try {
 								double size = Double.parseDouble(lineSeg2[5].trim());
-								if(size < 0)
+								if(size <= 0)
 								{
 									System.out.println("Size cannot be negative!");
 									continue;

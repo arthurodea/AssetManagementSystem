@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class EmployeeLoader {
-	
+
 	//pattern for regex
 	private static final Pattern idPatternEmployee = Pattern.compile("^E\\d{3}$");
-	
+
 	/**
 	 * Loads employee data from a text file and populates the employee list.
 	 * Automatically validates employee ID format (E###) and skips invalid entries,
 	 * empty lines, and comments (lines starting with #).
-	 * 
+	 *
 	 * @param file Path to the employee text file (e.g., "employees.txt")
 	 * @param list ArrayList to populate with Employee objects
 	 * @throws FileNotFoundException If the specified file cannot be found
@@ -54,6 +54,19 @@ public class EmployeeLoader {
 
 				newEmployee = new Employee(lineSeg[0],lineSeg[1]);
 
+				//prevent user from adding a duplicate employee
+				boolean duplicate = false;
+				for (Employee existing : list) {
+					if (existing.getEmployeeID().equalsIgnoreCase(lineSeg[0])) {
+						duplicate = true;
+						break;
+					}
+				}
+				if (duplicate) {
+					System.out.println("Skipping duplicate employee ID: " + lineSeg[0]);
+					continue;
+				}
+
 				list.add(newEmployee);
 				employeeCount++;
 
@@ -64,17 +77,19 @@ public class EmployeeLoader {
 		}
 
 
-		catch(IOException ioe) 
+		catch(IOException ioe)
 		{
 			System.out.println(
 					"An error occurred while reading the file: "
 							+ ioe.getMessage());
 		}
 	}
-	
+
 	static String idToName(ArrayList<Employee> list, String target) {
 		//call searchEmployee and store as variable
 		int employee = EmployeeUtility.searchEmployee(list, target);
+		//if employee cannot be found
+		if (employee == -1) return "Unknown Employee";
 		return list.get(employee).getEmployeeName();
 
 	}

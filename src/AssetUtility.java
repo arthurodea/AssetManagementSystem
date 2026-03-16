@@ -433,6 +433,7 @@ public class AssetUtility {
 
 	//search by model
 	static boolean searchByModel(ArrayList<Asset> inventory, String target) {
+		boolean found = false;
 		//loop through library
 		for(int i = 0; i < inventory.size(); i++)
 		{
@@ -442,10 +443,13 @@ public class AssetUtility {
 			//if target is found
 			if(item.getModel().trim().toLowerCase().equals(target.toLowerCase())) //converts to lower case in order to validate
 			{
-				System.out.println("Item Found Successfully!");
 				System.out.println(item.getAssetDetails());
-				return true;
+				found = true;
 			}
+		}
+		if (found) {
+			System.out.println("Item(s) Found Successfully!");
+			return true;
 		}
 		//if target is not found
 		System.out.println("No Such Item Found With Model " + target);
@@ -455,6 +459,7 @@ public class AssetUtility {
 
 	//search by make
 	static boolean searchByMake(ArrayList<Asset> inventory, String target) {
+		boolean found = false;
 		//loop through library
 		for(int i = 0; i < inventory.size(); i++)
 		{
@@ -464,10 +469,13 @@ public class AssetUtility {
 			//if target is found
 			if(item.getMake().trim().toLowerCase().equals(target.toLowerCase())) //converts to lower case in order to validate
 			{
-				System.out.println("Item Found Successfully!");
 				System.out.println(item.getAssetDetails());
-				return true;
+				found = true;
 			}
+		}
+		if (found) {
+			System.out.println("Item(s) Found Successfully!");
+			return true;
 		}
 		//if target is not found
 		System.out.println("No Such Item Found With Make " + target);

@@ -49,45 +49,84 @@ public class AssetLoader {
 					if (lineSeg.length != 9) continue;
 
 					//gets string value of AssetStatus
-					AssetStatus status = AssetStatus.valueOf(lineSeg[4].trim().toUpperCase());
+                    AssetStatus status;
+                    try {
+                        status = AssetStatus.valueOf(lineSeg[4].trim().toUpperCase());
+                    } catch (IllegalArgumentException e) {
+						System.out.println("Skipping Laptop with invalid status: " + line);
+						continue;
+                    }
 
-					newAsset = new Laptop(
-							lineSeg[1], lineSeg[2], lineSeg[3],
-							status, lineSeg[5],
-							Integer.parseInt(lineSeg[6]), Integer.parseInt(lineSeg[7]), lineSeg[8]
-							);
+                    try {
+                        newAsset = new Laptop(
+                                lineSeg[1], lineSeg[2], lineSeg[3],
+                                status, lineSeg[5],
+                                Integer.parseInt(lineSeg[6]), Integer.parseInt(lineSeg[7]), lineSeg[8]
+                                );
+                    } catch (NumberFormatException nfe) {
+                        System.out.println("Skipping Laptop with invalid numeric values: " + line);
+						continue;
+                    }
 
-				} else if (lineSeg[0].equalsIgnoreCase("monitor")) {
+                } else if (lineSeg[0].equalsIgnoreCase("monitor")) {
 					if (lineSeg.length != 8) continue;
 
 					//gets string value of AssetStatus
-					AssetStatus status = AssetStatus.valueOf(lineSeg[4].trim().toUpperCase());
+                    AssetStatus status;
+                    try {
+                        status = AssetStatus.valueOf(lineSeg[4].trim().toUpperCase());
+                    } catch (IllegalArgumentException e) {
+						System.out.println("Skipping Monitor with invalid status: " + line);
+						continue;
+                    }
 
-					newAsset = new Monitor(
-							lineSeg[1], lineSeg[2], lineSeg[3],
-							status, lineSeg[5],
-							Double.parseDouble(lineSeg[6]), lineSeg[7]
-							);
+                    try {
+                        newAsset = new Monitor(
+                                lineSeg[1], lineSeg[2], lineSeg[3],
+                                status, lineSeg[5],
+                                Double.parseDouble(lineSeg[6]), lineSeg[7]
+                                );
+                    } catch (NumberFormatException nfe) {
+						System.out.println("Skipping Monitor with invalid numeric values: " + line);
+						continue;
+                    }
 
-				} else if (lineSeg[0].equalsIgnoreCase("phone")) {
+                } else if (lineSeg[0].equalsIgnoreCase("phone")) {
 					if (lineSeg.length != 9) continue;
 
 					//gets string value of AssetStatus
-					AssetStatus status = AssetStatus.valueOf(lineSeg[4].trim().toUpperCase());
+                    AssetStatus status;
+                    try {
+                        status = AssetStatus.valueOf(lineSeg[4].trim().toUpperCase());
+                    } catch (IllegalArgumentException e) {
+						System.out.println("Skipping Phone with invalid status: " + line);
+						continue;
+                    }
 
-					newAsset = new Phone(
-							lineSeg[1], lineSeg[2], lineSeg[3],
-							status, lineSeg[5],
-							lineSeg[6], lineSeg[7], Integer.parseInt(lineSeg[8])
-							);
+                    try {
+                        newAsset = new Phone(
+                                lineSeg[1], lineSeg[2], lineSeg[3],
+                                status, lineSeg[5],
+                                lineSeg[6], lineSeg[7], Integer.parseInt(lineSeg[8])
+                                );
+                    } catch (NumberFormatException nfe) {
+						System.out.println("Skipping Phone with invalid numeric values: " + line);
+						continue;
+                    }
 
-				} else if (lineSeg[0].equalsIgnoreCase("software")) {
+                } else if (lineSeg[0].equalsIgnoreCase("software")) {
 					if (lineSeg.length != 8) continue;
 
 					//gets string value of AssetStatus
-					AssetStatus status = AssetStatus.valueOf(lineSeg[4].trim().toUpperCase());
+                    AssetStatus status;
+                    try {
+                        status = AssetStatus.valueOf(lineSeg[4].trim().toUpperCase());
+                    } catch (IllegalArgumentException e) {
+						System.out.println("Skipping Software with invalid status: " + line);
+						continue;
+                    }
 
-					//prevents invalid expiry date
+                    //prevents invalid expiry date
 					LocalDate expiryDate;
 					try {
 						expiryDate = LocalDate.parse(lineSeg[7].trim()); 
@@ -99,7 +138,7 @@ public class AssetLoader {
 					newAsset = new Software(
 							lineSeg[1], lineSeg[2], lineSeg[3],
 							status, lineSeg[5],
-							lineSeg[6], LocalDate.parse(lineSeg[7])
+							lineSeg[6], expiryDate
 							);
 
 				} else {
